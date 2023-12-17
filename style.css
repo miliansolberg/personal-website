@@ -1,85 +1,150 @@
 :root {
-    --bg-color: rgb(20, 20, 20);
-    --card-color: rgb(23, 23, 23);
-  }
-  
+  --bg-color: rgb(20, 20, 20);
+  --card-color: rgb(23, 23, 23);
+  --text-color: #dad2d2;
+  --card-hover-light: rgba(255, 255, 255, 0.06);
+  --card-hover-strong: rgba(255, 255, 255, 0.101);
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+  align-items: center;
+  justify-content: flex-start;
+  /* Align content to the top */
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  padding-top: 10vh;
+  /* Adjust this value to move content lower from the top */
+}
+
+h1 {
+  margin-bottom: 2vh;
+  /* Provides space below the heading */
+  /* ... other styles remain ... */
+}
+
+
+#cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 916px;
+  padding: 10px;
+  /* Padding instead of calc for width */
+}
+
+.card {
+  background-color: var(--card-color);
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  width: 260px;
+  text-decoration: none;
+  /* Remove underline from the link */
+  color: inherit;
+  /* Inherit text color */
+  overflow: hidden;
+  /* Ensure that the pseudo-elements do not overflow */
+  transition: transform 0.3s ease;
+  /* Smooth transition for hover effect */
+  position: relative;
+  /* For pseudo-elements positioning */
+}
+
+.card img {
+  margin-bottom: 10px;
+  /* Spacing between image and bottom of the card if needed */
+  width: 50px;
+  /* Or another size */
+  height: 50px;
+  /* Or another size */
+}
+
+
+.card:hover {
+  transform: translateY(-5px);
+  /* Lift the card up on hover */
+}
+
+.card:hover::before,
+.card:hover::after {
+  opacity: 1;
+  /* Show the hover effects */
+}
+
+.card::before,
+.card::after {
+  border-radius: inherit;
+  content: "";
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 500ms;
+  opacity: 0;
+  /* Hide the effect by default */
+}
+
+.card::before {
+  background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y),
+      var(--card-hover-light),
+      transparent 40%);
+  z-index: 1;
+}
+
+.card::after {
+  background: radial-gradient(400px circle at var(--mouse-x) var(--mouse-y),
+      var(--card-hover-strong),
+      transparent 40%);
+  z-index: 2;
+}
+
+@media (max-width: 580px) {
   body {
-    align-items: center;
-    background-color: var(--bg-color);
-    display: flex;
-    height: 100vh;
-    justify-content: center;
-    margin: 0px;
-    overflow: hidden;
-    padding: 0px;
+    padding-top: 5vh;
+    /* Less padding at the top for smaller screens */
   }
-  
+
+  h1 {
+    font-size: 1.5em;
+    /* Smaller font size for the heading */
+    margin-bottom: 1vh;
+    /* Smaller margin below the heading */
+  }
+
   #cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;  
-    max-width: 916px;
-    width: calc(100% - 20px);
+    flex-direction: column;
+    /* Stack cards vertically */
+    gap: 5px;
+    /* Reduce the gap between cards */
+    padding: 5px;
+    /* Reduce padding */
   }
-  
-  #cards:hover > .card::after {
-    opacity: 1;
-  }
-  
+
   .card {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    cursor: pointer;
-    display: flex;
-    height: 260px;
-    flex-direction: column;
-    position: relative;
-    width: 300px;  
+    height: 100px;
+    width: 120px;
+    /* Make card width responsive to screen size */
+    /* Adjust height automatically */
+    margin-bottom: 10px;
+    /* Add some space between cards */
   }
-  
-  .card:hover::before {
-    opacity: 1;
+
+  /* If you have text or other elements in .card-content, adjust them as needed */
+  .card-content img {
+    width: 40px;
+    /* Make image smaller to fit smaller screens */
+    height: 40px;
   }
-  
-  .card::before,
-  .card::after {
-    border-radius: inherit;
-    content: "";
-    height: 100%;
-    left: 0px;
-    opacity: 0;
-    position: absolute;
-    top: 0px;
-    transition: opacity 500ms;
-    width: 100%;
-  }
-  
-  .card::before {
-    background: radial-gradient(
-      800px circle at var(--mouse-x) var(--mouse-y), 
-      rgba(255, 255, 255, 0.06),
-      transparent 40%
-    );
-    z-index: 3;
-  }
-  
-  .card::after {  
-    background: radial-gradient(
-      600px circle at var(--mouse-x) var(--mouse-y), 
-      rgba(255, 255, 255, 0.4),
-      transparent 40%
-    );
-    z-index: 1;
-  }
-  
-  .card > .card-content {
-    background-color: var(--card-color);
-    border-radius: inherit;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    inset: 1px;
-    padding: 10px;
-    position: absolute;
-    z-index: 2;
-  }
+
+  /* Adjust the font size or any other properties of elements inside the card */
+}
