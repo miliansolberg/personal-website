@@ -1,6 +1,6 @@
 :root {
-  --bg-color: rgb(20, 20, 20);
-  --card-color: rgb(23, 23, 23);
+  --bg-color: #1d1f28;
+  --card-color: #12141a;
   --text-color: #dad2d2;
   --card-hover-light: rgba(255, 255, 255, 0.06);
   --card-hover-strong: rgba(255, 255, 255, 0.101);
