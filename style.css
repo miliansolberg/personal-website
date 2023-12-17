@@ -131,8 +131,8 @@ h1 {
   }
 
   .card {
-    height: 100px;
-    width: 120px;
+    height: 230px;
+    width: 260px;
     /* Make card width responsive to screen size */
     /* Adjust height automatically */
     margin-bottom: 10px;
